@@ -23,11 +23,11 @@ let inScroll = {
       ennn.forEach(entry => {
           if (entry.isIntersecting) {
               activeSection.forEach((element)=>{
-                  if(element.classList.contains('your-active-class')){
-                      element.classList.remove("your-active-class");
+                  if(element.classList.contains('country-active-class')){
+                      element.classList.remove("country-active-class");
                   }
               });
-              entry.target.classList.add('your-active-class');
+              entry.target.classList.add('country-active-class');
           }
       })
   }
@@ -129,4 +129,6 @@ function addNewCountry(){
     }
     observecountry();
 }
+
+
 
