@@ -107,6 +107,7 @@ function addNewCountry(){
         const countryH2 =document.createElement('h2');
         const countryP =document.createElement('p');
         countrySection.id=head;
+        countrySection.dataset.nav=head;
         countryDiv.classList.toggle('landing__container');
         countryH2.textContent=head;
         countryP.textContent=body;
@@ -123,4 +124,6 @@ function addNewCountry(){
         ulList.appendChild(newLi);
     }
 }
+
+
 
