@@ -9,11 +9,15 @@ let inScroll = {
     rootMargin: '0px',
     threshold: 1.0
   }
+  observecountry();
   
-  let observer = new IntersectionObserver(callback, inScroll);
+  function observecountry(){
+      let observer = new IntersectionObserver(callback, inScroll);
   activeSection.forEach( (element)=>{
       observer.observe(element);
   });
+  }
+  
   
   function callback(ennn){
       ennn.forEach(entry => {
@@ -123,7 +127,6 @@ function addNewCountry(){
         newLi.appendChild(newA);
         ulList.appendChild(newLi);
     }
+    observecountry();
 }
-
-
 
