@@ -1,36 +1,46 @@
 
 
-const number=document.getElementsByTagName('section');
-const ulList=document.querySelector('#navbar__list');
-const activeSection=document.querySelectorAll('section');
+let ulList=document.querySelector('#navbar__list');
+let activeSection=document.querySelectorAll('section');
 
-let inScroll = {
-    root: document.querySelector('#scrollArea'),
-    rootMargin: '0px',
-    threshold: 1.0
-  }
-  observecountry();
+// let inScroll = {
+//     root: document.querySelector('#scrollArea'),
+//     rootMargin: '0px',
+//     threshold: 1.0
+//   }
+//   observecountry();
   
-  function observecountry(){
-      let observer = new IntersectionObserver(callback, inScroll);
-  activeSection.forEach( (element)=>{
-      observer.observe(element);
-  });
-  }
+//   function observecountry(){
+//       let observer = new IntersectionObserver(callback, inScroll);
+//       activeSection.forEach( (element)=>{
+//       observer.observe(element);
+//   });
+//   }
   
   
-  function callback(ennn){
-      ennn.forEach(entry => {
-          if (entry.isIntersecting) {
-              activeSection.forEach((element)=>{
-                  if(element.classList.contains('country-active-class')){
-                      element.classList.remove("country-active-class");
-                  }
-              });
-              entry.target.classList.add('country-active-class');
-          }
-      })
-  }
+//   function callback(ennn,oppp){
+//       ennn.forEach(entry => {
+//           if (entry.isIntersecting) {
+//               const liList=document.querySelectorAll('li');
+//               activeSection.forEach((element)=>{
+//                   if(element.classList.contains('country-active-class')){
+//                       element.classList.remove("country-active-class");
+//                   }
+//               });
+//               liList.forEach(element => {
+//                 if(element.classList.contains('country-active-class')){
+//                     element.classList.remove("country-active-class");
+//                 }
+//               });
+//               entry.target.classList.add('country-active-class');
+//             //   for (const iterator of liList) {
+//             //       if (entry.target.id==iterator.id) {
+//             //           iterator.classList.add('country-active-class')
+//             //       }
+//             //   }
+//             }
+//       })
+//   }
 
 
 //   let callback = (entries, observer) => {
@@ -49,8 +59,28 @@ let inScroll = {
 //       //   entry.time
 //     });
 // //   };
+
+
 //   let target = document.querySelector('#listItem');
 // observer.observe(target);
+
+window.addEventListener('scroll',hihi);
+
+function hihi() {
+    let uu;
+    activeSection.forEach(element => {
+        if(element.classList.contains('country-active-class')){
+           element.classList.remove("country-active-class");
+        }
+        const rr=element.getBoundingClientRect();
+        if (rr.top <200 &&rr.bottom >200) {
+            uu=element;
+            uu.classList.add("country-active-class")
+        }
+        
+        
+    });
+}
 // function aaaa(){
 //     let arrayforsections=[];
 //     activeSection.forEach(element => {
@@ -82,7 +112,7 @@ coundAndPopulateLiElements();
 **************/
 function coundAndPopulateLiElements(){
     
-    for (const iterator of number) {
+    for (const iterator of activeSection) {
         const newLi= document.createElement('li');
         const newA=document.createElement('a');
         newA.textContent=iterator.querySelector('h2').innerText;
@@ -91,13 +121,8 @@ function coundAndPopulateLiElements(){
         newLi.appendChild(newA);
         ulList.appendChild(newLi);
     }
-    const addNewOne=document.createElement('li');
-    const addLink=document.createElement('a');
-    addLink.textContent='add';
-    addLink.addEventListener('click',addNewCountry);
-    addNewOne.appendChild(addLink);
-    ulList.appendChild(addNewOne);
 }
+
 /********* 
 // function to add country
 ************/
@@ -127,6 +152,8 @@ function addNewCountry(){
         newLi.appendChild(newA);
         ulList.appendChild(newLi);
     }
+    activeSection=document.querySelectorAll('section');
+    // coundAndPopulateLiElements();
     observecountry();
 }
 
