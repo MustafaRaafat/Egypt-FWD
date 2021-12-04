@@ -1,68 +1,5 @@
-
-
 let ulList=document.querySelector('#navbar__list');
 let activeSection=document.querySelectorAll('section');
-
-// let inScroll = {
-//     root: document.querySelector('#scrollArea'),
-//     rootMargin: '0px',
-//     threshold: 1.0
-//   }
-//   observecountry();
-  
-//   function observecountry(){
-//       let observer = new IntersectionObserver(callback, inScroll);
-//       activeSection.forEach( (element)=>{
-//       observer.observe(element);
-//   });
-//   }
-  
-  
-//   function callback(ennn,oppp){
-//       ennn.forEach(entry => {
-//           if (entry.isIntersecting) {
-//               const liList=document.querySelectorAll('li');
-//               activeSection.forEach((element)=>{
-//                   if(element.classList.contains('country-active-class')){
-//                       element.classList.remove("country-active-class");
-//                   }
-//               });
-//               liList.forEach(element => {
-//                 if(element.classList.contains('country-active-class')){
-//                     element.classList.remove("country-active-class");
-//                 }
-//               });
-//               entry.target.classList.add('country-active-class');
-//             //   for (const iterator of liList) {
-//             //       if (entry.target.id==iterator.id) {
-//             //           iterator.classList.add('country-active-class')
-//             //       }
-//             //   }
-//             }
-//       })
-//   }
-
-
-//   let callback = (entries, observer) => {
-//     entries.forEach(entry => {
-//         if () {
-            
-//         }
-//       // Each entry describes an intersection change for one observed
-//       // target element:
-//       //   entry.boundingClientRect
-//       //   entry.intersectionRatio
-//       //   entry.intersectionRect
-//       //   entry.isIntersecting
-//       //   entry.rootBounds
-//       //   entry.target
-//       //   entry.time
-//     });
-// //   };
-
-
-//   let target = document.querySelector('#listItem');
-// observer.observe(target);
 
 window.addEventListener('scroll',hihi);
 
@@ -78,33 +15,27 @@ function hihi() {
             uu.classList.add("country-active-class")
         }
         
-        
     });
 }
-// function aaaa(){
-//     let arrayforsections=[];
-//     activeSection.forEach(element => {
-        
-//         const rrr=element.getBoundingClientRect();
-//         if (rrr.top>0) {
-//             arrayforsections.push(element);
-//         }
-        
-//     });
-//     alert(arrayforsections[0].textContent);
-// }
-
-// window.addEventListener('scroll',aaaa);
-
-
-
 
 // call to the function 
 coundAndPopulateLiElements();
 
-
-
-
+/********* 
+// function to create smooth scroll when link is clicked
+**************/
+function SmothScroll() {
+    let linkItem = 'a[href^="#"]';
+    let allLinks =document.querySelectorAll(linkItem);
+    allLinks.forEach(link => {
+        link.onclick = function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+}
 
 /********* 
 // function to create li elements in navbar depending on
@@ -121,6 +52,7 @@ function coundAndPopulateLiElements(){
         newLi.appendChild(newA);
         ulList.appendChild(newLi);
     }
+    SmothScroll();
 }
 
 /********* 
@@ -153,9 +85,5 @@ function addNewCountry(){
         ulList.appendChild(newLi);
     }
     activeSection=document.querySelectorAll('section');
-    // coundAndPopulateLiElements();
-    observecountry();
+    SmothScroll();
 }
-
-
-
